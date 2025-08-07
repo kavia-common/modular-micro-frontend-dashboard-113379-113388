@@ -58,3 +58,4 @@ module.exports = {
     })
   ]
 };
+// End of webpack configuration
