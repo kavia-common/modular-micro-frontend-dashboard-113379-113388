@@ -5,7 +5,7 @@ This folder contains the standalone **Assets micro frontend** React application.
 ## Features
 
 - Independent React application scaffold (no shared node_modules at the root)
-- Designed to be federated into the dashboard host
+- Designed to be federated into the dashboard host using **Webpack Module Federation**
 - Supports local development and independent builds
 
 ## Getting Started
@@ -17,7 +17,7 @@ This folder contains the standalone **Assets micro frontend** React application.
    npm install
    ```
 
-2. Start the development server:
+2. Start the development server (runs at [http://localhost:3001](http://localhost:3001)):
 
    ```sh
    npm start
@@ -29,9 +29,18 @@ This folder contains the standalone **Assets micro frontend** React application.
    npm run build
    ```
 
+## Module Federation
+
+- Uses **Webpack** and a custom `webpack.config.js` for all build/dev scripts.
+- Exposes the main `App` component as `assets/App` via Module Federation for remote consumption.
+- Remote entry available at: `http://localhost:3001/remoteEntry.js`
+- Shared dependencies: React and ReactDOM are enforced as singletons.
+
 ## Notes
 
-- This is NOT a submodule; it runs and builds independently.
-- Federation and shared config (if any) will be set up at a later stage.
+- No longer uses `react-scripts` (CRA) - all commands route through webpack and Babel.
+- Federation is accomplished with webpack's `ModuleFederationPlugin` - see `webpack.config.js`.
+- Babel (`@babel/core`, `@babel/preset-env`, `@babel/preset-react`) and Webpack loader dependencies are required for builds.
+- This is **not** a submodule; it runs and builds independently.
 
 ---
