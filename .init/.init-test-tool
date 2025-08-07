@@ -1,0 +1,4 @@
+{
+    "command": "npm run test",
+    "working_directory": "/home/kavia/workspace/code-generation/modular-micro-frontend-dashboard-113379-113388/micro_frontend_dashboard"
+}
