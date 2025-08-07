@@ -9,6 +9,7 @@ module.exports = {
     static: path.join(__dirname, 'dist'),
     port: 3000,
     historyApiFallback: true,
+    allowedHosts: 'all', // Allow all hosts to resolve "invalid host header" error
   },
   output: {
     publicPath: 'auto',
