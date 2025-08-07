@@ -9,6 +9,24 @@ This project provides a minimal React template with a clean, modern UI and minim
 - **Fast**: Minimal dependencies for quick loading times
 - **Simple**: Easy to understand and modify
 
+## Theme System
+
+The dashboard uses a centralized theme system with React Context and CSS variables.
+- Theme variables (primary, secondary, accent, and all background/foreground colors) are managed in `src/App.css`.
+- App-wide dark/light mode is toggled via context, and the theme mode is stored in localStorage.
+- Components and micro frontends can access and switch the theme via the `ThemeContext`.
+- Colors are always available from `useTheme()` as `{theme, colors, setTheme, switchTheme}`.
+- Modules import and can consume the context directly for custom UI.
+
+**How To Use in Modules:**
+```js
+import { useTheme } from "../theme/ThemeContext";
+const { theme, colors } = useTheme();
+```
+
+**To extend or alter the theme:**  
+Edit `theme/ThemeContext.js` and update the color palette or theme logic as needed.
+
 ## Getting Started
 
 In the project directory, you can run:
@@ -31,15 +49,16 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ### Colors
 
-The main brand colors are defined as CSS variables in `src/App.css`:
+The main brand colors are defined as CSS variables in `src/App.css` and centrally in `theme/ThemeContext.js`:
 
 ```css
 :root {
   --kavia-orange: #E87A41;
   --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --kavia-primary: #1a73e8;
+  --kavia-secondary: #2d2d2d;
+  --accent: #ff9800;
+  /* ... */
 }
 ```
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { AssetsApp } from './modules/assets';
 import { ExplorerApp } from './modules/explorer';
@@ -6,6 +6,7 @@ import { TemplatesApp } from './modules/templates';
 
 import NavBar from "./components/NavBar";
 import SideMenu from "./components/SideMenu";
+import { useTheme } from "./theme/ThemeContext";
 
 // Main Content Area to mount the current micro frontend
 function ModuleDisplay({ active }) {
@@ -36,31 +37,24 @@ function ModuleDisplay({ active }) {
  * - Theme toggle (light/dark)
  */
 function App() {
-  const [theme, setTheme] = useState('light');
+  // Theme context exposes mode and color palette
+  const themeCtx = useTheme();
+  const { theme, switchTheme, colors } = themeCtx;
   const [activeModule, setActiveModule] = useState('assets');
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
 
   // PUBLIC_INTERFACE
   const handleSwitchModule = (moduleKey) => {
     setActiveModule(moduleKey);
   };
 
-  // Make room for fixed nav/side in layout
   return (
     <div
       className="App"
       style={{
         minHeight: "100vh",
         background: "var(--bg-primary, #fff)",
-        transition: "background .2s",
+        color: "var(--text-primary, #282c34)",
+        transition: "background .2s, color .2s",
       }}
     >
       {/* Fixed Top Navigation Bar */}
@@ -68,10 +62,11 @@ function App() {
         current={activeModule}
         onSwitch={handleSwitchModule}
         theme={theme}
-        toggleTheme={toggleTheme}
+        toggleTheme={switchTheme}
+        colors={colors}
       />
       {/* Collapsible Side Menu */}
-      <SideMenu />
+      <SideMenu colors={colors} />
       {/* Main Content (offset for nav & sidebar) */}
       <div
         className="dashboard-main-content"
@@ -83,7 +78,8 @@ function App() {
           transition: "margin-left .25s cubic-bezier(.4,0,.2,1)",
           position: "relative",
           overflow: "auto",
-          background: "var(--bg-primary, #fff)"
+          background: "var(--bg-primary, #fff)",
+          color: "var(--text-primary, #282c34)"
         }}
       >
         <ModuleDisplay active={activeModule} />

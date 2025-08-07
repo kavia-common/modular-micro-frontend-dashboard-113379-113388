@@ -5,8 +5,9 @@ import React, { useState } from "react";
  * SideMenu - Responsive collapsible side navigation for dashboard host actions.
  *
  * @param {boolean} [defaultCollapsed=false] - Start menu collapsed or not.
+ * @param {object} colors - Optional: { primary, secondary, accent } brand colors.
  */
-export default function SideMenu({ defaultCollapsed = false }) {
+export default function SideMenu({ defaultCollapsed = false, colors }) {
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
   const menuWidth = collapsed ? 64 : 200;

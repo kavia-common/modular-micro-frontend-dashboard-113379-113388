@@ -8,8 +8,9 @@ import React from "react";
  * @param {function} onSwitch - Callback to switch between modules.
  * @param {string} theme - Current theme mode ('light'|'dark').
  * @param {function} toggleTheme - Callback to toggle theme.
+ * @param {object} colors - Optional: { primary, secondary, accent } brand colors.
  */
-export default function NavBar({ current, onSwitch, theme, toggleTheme }) {
+export default function NavBar({ current, onSwitch, theme, toggleTheme, colors }) {
   const NAV_OPTIONS = [
     { key: "assets", label: "Assets" },
     { key: "explorer", label: "Explorer" },

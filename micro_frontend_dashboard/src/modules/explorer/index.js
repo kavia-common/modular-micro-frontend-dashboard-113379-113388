@@ -1,18 +1,18 @@
 import React from "react";
 // Ensure import is exactly as expected for Create React App CSS Modules
 import styles from "./ExplorerApp.module.css";
+import { useTheme } from "../../theme/ThemeContext";
 
 /**
  * ExplorerApp Component - Entry point for the Explorer micro frontend
  *
  * This root component is ready for dynamic loading via the dashboard shell.
+ * Consumes the global ThemeContext for theme-aware styling.
  */
 // PUBLIC_INTERFACE
 export function ExplorerApp() {
-  /**
-   * Main Explorer micro frontend component.
-   * Replace this with actual explorer UI logic.
-   */
+  const { theme } = useTheme();
+
   // Prevent tree-shaking of unused CSS imports
   if (!styles || typeof styles !== "object") {
     // fallback to avoid build crash if import fails
@@ -20,7 +20,7 @@ export function ExplorerApp() {
     console.error("ExplorerApp: CSS module import failed.");
   }
   return (
-    <div className={styles.moduleRoot}>
+    <div className={styles.moduleRoot} data-theme={theme}>
       <h2 className={styles.header}>Explorer Module</h2>
       <p className={styles.description}>
         Welcome to the <strong>Explorer</strong> micro frontend.<br />

@@ -1,0 +1,13 @@
+.moduleRoot {
+  padding: 2rem;
+  border-radius: 10px;
+  background: var(--bg-secondary, #f8f9fa);
+}
+
+.header {
+  color: var(--text-primary, #282c34);
+}
+
+.description {
+  color: var(--text-secondary, #61dafb);
+}
