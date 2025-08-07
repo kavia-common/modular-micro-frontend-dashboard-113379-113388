@@ -1,0 +1,21 @@
+:root {
+  --primary: #1a73e8;
+  --secondary: #2d2d2d;
+  --accent: #ff9800;
+}
+
+.App {
+  text-align: center;
+  background: #fff;
+  color: var(--secondary);
+  min-height: 100vh;
+}
+
+.App-header {
+  margin-top: 80px;
+  font-size: 20px;
+}
+
+.App-link {
+  color: var(--primary);
+}
