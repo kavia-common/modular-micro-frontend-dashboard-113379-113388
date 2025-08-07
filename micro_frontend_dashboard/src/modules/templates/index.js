@@ -1,19 +1,29 @@
 import React from "react";
 
 /**
- * Templates Micro Frontend Placeholder Component
+ * TemplatesApp Component - Entry point for the Templates micro frontend
  *
- * This is the entry point for the Templates micro frontend module.
- * Replace with actual implementation.
+ * This root component is ready for dynamic loading via the dashboard shell.
  */
 // PUBLIC_INTERFACE
-function TemplatesMicroFrontend() {
+export function TemplatesApp() {
+  /**
+   * Main Templates micro frontend component.
+   * Replace this placeholder with the real template UI.
+   */
   return (
-    <div>
-      <h2>Templates Micro Frontend</h2>
-      <p>This is a placeholder for the Templates module.</p>
+    <div style={{
+      padding: "2rem",
+      borderRadius: "10px",
+      background: "var(--bg-secondary, #f8f9fa)"
+    }}>
+      <h2 style={{color: "var(--text-primary, #282c34)"}}>Templates Module</h2>
+      <p style={{color: "var(--text-secondary, #61dafb)"}}>
+        Welcome to the <strong>Templates</strong> micro frontend.<br />
+        This is a self-contained starter component.
+      </p>
     </div>
   );
 }
 
-export default TemplatesMicroFrontend;
+export default TemplatesApp;
