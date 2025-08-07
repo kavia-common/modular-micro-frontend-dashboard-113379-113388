@@ -1,82 +1,47 @@
-# Lightweight React Template for KAVIA
+# Micro Frontend Dashboard Host Shell
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+This folder contains the standalone **Dashboard Host Shell** React application. It serves as the entry point for the modular MCS dashboard and handles dynamic loading of the "assets", "explorer", and "templates" remote micro frontends.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Independent React application scaffold—the host for federated remote modules.
+- Manages navigation, layout, and UI shell for all micro frontend modules.
+- Designed for modular, independent development and deployment.
+- Modern, responsive UI (light/dark theme toggle ready).
+- Ready for integration with SonarQube, custom linting, and modular code quality tooling.
 
 ## Getting Started
 
-In the project directory, you can run:
+1. Install dependencies:
 
-### `npm start`
+   ```sh
+   cd micro_frontend_dashboard
+   npm install
+   ```
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Start the development server:
 
-### `npm test`
+   ```sh
+   npm start
+   ```
 
-Launches the test runner in interactive watch mode.
+3. Build for production:
 
-### `npm run build`
+   ```sh
+   npm run build
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Directory Structure
 
-## Customization
+- `src/` - React app source code
+- `public/` - Static assets (`index.html`, `favicon.ico`, manifest)
+- `package.json` - Project configuration
+- `eslint.config.mjs` - ESLint project config
 
-### Colors
+## Notes
 
-The main brand colors are defined as CSS variables in `src/App.css`:
+- This is **not** a submodule. It runs and builds independently as the host for all micro frontends.
+- Federation and cross-app configuration are set up at later steps (see main project docs).
+- For more, see `/README.md` at the project root.
 
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
