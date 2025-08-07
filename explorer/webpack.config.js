@@ -47,8 +47,8 @@ module.exports = {
         './App': './src/App',
       },
       shared: { 
-        react: { singleton: true, requiredVersion: '^18.2.0' },
-        "react-dom": { singleton: true, requiredVersion: '^18.2.0' },
+        react: { singleton: true, eager: false, requiredVersion: '^18.2.0' },
+        "react-dom": { singleton: true, eager: false, requiredVersion: '^18.2.0' },
       }
     }),
     new HtmlWebpackPlugin({
