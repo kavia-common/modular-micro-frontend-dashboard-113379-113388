@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./AssetsApp.module.css";
 
 /**
  * AssetsApp Component - Entry point for the Assets micro frontend
@@ -12,13 +13,9 @@ export function AssetsApp() {
    * Replace the placeholder UI with actual content and features.
    */
   return (
-    <div style={{
-      padding: "2rem",
-      borderRadius: "10px",
-      background: "var(--bg-secondary, #f8f9fa)"
-    }}>
-      <h2 style={{color: "var(--text-primary, #282c34)"}}>Assets Module</h2>
-      <p style={{color: "var(--text-secondary, #61dafb)"}}>
+    <div className={styles.moduleRoot}>
+      <h2 className={styles.header}>Assets Module</h2>
+      <p className={styles.description}>
         Welcome to the <strong>Assets</strong> micro frontend.<br />
         This is a self-contained starter component.
       </p>
