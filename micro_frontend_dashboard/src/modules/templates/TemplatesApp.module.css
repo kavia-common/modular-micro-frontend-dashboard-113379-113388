@@ -10,14 +10,12 @@
   flex-direction: column;
   align-items: flex-start;
 }
-
 @media (max-width: 900px) {
   .moduleRoot {
     max-width: 97vw;
     padding: 1rem;
   }
 }
-
 @media (max-width: 600px) {
   .moduleRoot {
     padding: 1rem 0.5rem 2rem 0.5rem;
@@ -42,19 +40,10 @@
   word-break: break-word;
   max-width: 90vw;
 }
-
 @media (max-width: 600px) {
   .description {
     font-size: 0.96rem;
     line-height: 1.28em;
     padding-right: 0.5vw;
   }
-}
-
-.header {
-  color: var(--text-primary, #282c34);
-}
-
-.description {
-  color: var(--text-secondary, #61dafb);
 }
