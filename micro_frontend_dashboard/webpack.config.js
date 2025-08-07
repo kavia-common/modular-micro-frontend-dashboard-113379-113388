@@ -44,9 +44,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'dashboard_host',
       remotes: {
-        assets: 'assets@http://localhost:3001/remoteEntry.js',
-        explorer: 'explorer@http://localhost:3002/remoteEntry.js',
-        templates: 'templates@http://localhost:3003/remoteEntry.js',
+        assets: 'assets@https://vscode-internal-26352-beta.beta01.cloud.kavia.ai:3001/remoteEntry.js',
+        // explorer: 'explorer@http://localhost:3002/remoteEntry.js',
+        // templates: 'templates@http://localhost:3003/remoteEntry.js',
       },
       shared: { 
         react: { singleton: true, eager: false, requiredVersion: '^18.2.0' },
