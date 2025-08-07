@@ -1,24 +1,32 @@
 /* CSS Variables for Theme Management */
 :root {
+  /* KAVIA Brand Colors */
+  --kavia-orange: #E87A41;
+  --kavia-dark: #1A1A1A;
+  --kavia-primary: #1a73e8;
+  --kavia-secondary: #2d2d2d;
+  --accent: #ff9800;
+
   /* Light theme colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
   --text-primary: #282c34;
   --text-secondary: #61dafb;
   --border-color: #e9ecef;
-  --button-bg: #007bff;
+  --button-bg: var(--kavia-primary, #007bff);
   --button-text: #ffffff;
 }
 
 [data-theme="dark"] {
   /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
+  --bg-primary: var(--kavia-dark, #1a1a1a);
+  --bg-secondary: #23272F;
   --text-primary: #ffffff;
   --text-secondary: #61dafb;
   --border-color: #404040;
-  --button-bg: #0056b3;
+  --button-bg: var(--kavia-orange, #E87A41);
   --button-text: #ffffff;
+  --accent: #ff9800;
 }
 
 .App {
@@ -101,4 +109,60 @@
     padding: 8px 16px;
     font-size: 12px;
   }
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 99;
+    width: 58px !important;
+    min-width: 44px !important;
+    overflow-x: hidden;
+  }
+  .dashboard-main-content {
+    margin-left: 58px !important;
+    margin-top: 60px !important;
+    padding: 0 !important;
+  }
+  .navbar {
+    padding: 0 6px !important;
+    font-size: 15px;
+  }
+}
+
+.sidebar {
+  transition: width 0.25s cubic-bezier(.4,0,.2,1);
+  box-sizing: border-box;
+  will-change: width;
+}
+
+.dashboard-main-content {
+  margin-left: 200px;
+  margin-top: 60px;
+  padding: 0;
+  min-height: calc(100vh - 60px);
+  overflow: auto;
+  background: var(--bg-primary, #fff);
+  transition: margin-left 0.25s cubic-bezier(.4,0,.2,1);
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 110;
+  width: 100%;
+  background: var(--bg-secondary, #f8f9fa);
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+body, html, #root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }

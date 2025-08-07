@@ -4,104 +4,8 @@ import { AssetsApp } from './modules/assets';
 import { ExplorerApp } from './modules/explorer';
 import { TemplatesApp } from './modules/templates';
 
-// Dashboard Shell Layout Constants
-const NAV_OPTIONS = [
-  { key: 'assets', label: 'Assets' },
-  { key: 'explorer', label: 'Explorer' },
-  { key: 'templates', label: 'Templates' },
-];
-
-// Top Navigation Bar
-function TopNavBar({ current, onSwitch, theme, toggleTheme }) {
-  return (
-    <nav
-      className="navbar"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        height: 60,
-        background: "var(--bg-secondary, #f8f9fa)",
-        borderBottom: "1px solid var(--border-color, #e9ecef)",
-        padding: "0 2rem",
-        justifyContent: "space-between"
-      }}
-    >
-      <div style={{display: "flex", alignItems: "center"}}>
-        <span style={{
-          fontWeight: 700,
-          color: "var(--text-secondary, #61dafb)",
-          fontSize: 22,
-          marginRight: "2rem",
-          letterSpacing: "0.5px"
-        }}>
-          🧩 MCS Dashboard
-        </span>
-        {NAV_OPTIONS.map(opt => (
-          <button
-            key={opt.key}
-            className="btn"
-            aria-current={current === opt.key}
-            style={{
-              background: current === opt.key ? "var(--button-bg, #007bff)" : "transparent",
-              color: current === opt.key ? "var(--button-text, #fff)" : "var(--text-primary, #282c34)",
-              border: "none",
-              fontWeight: 600,
-              fontSize: 16,
-              borderRadius: 6,
-              margin: "0 0.5rem",
-              padding: "0.5rem 1.1rem",
-              cursor: current === opt.key ? "default" : "pointer",
-              opacity: current === opt.key ? 1 : 0.8,
-              outline: current === opt.key ? "2px solid var(--border-color,#e9ecef)" : "none"
-            }}
-            onClick={() => current !== opt.key && onSwitch(opt.key)}
-            tabIndex={0}
-          >
-            {opt.label}
-          </button>
-        ))}
-      </div>
-      <button 
-        className="theme-toggle"
-        onClick={toggleTheme}
-        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        style={{marginLeft: 16}}
-      >
-        {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-      </button>
-    </nav>
-  );
-}
-
-// Left Side Menu (placeholder for dashboard host controls)
-function SideMenu() {
-  return (
-    <div
-      style={{
-        width: 200,
-        background: "var(--bg-secondary, #f8f9fa)",
-        borderRight: "1px solid var(--border-color, #e9ecef)",
-        height: "100%",
-        paddingTop: 24,
-        minWidth: 140
-      }}
-    >
-      <div
-        style={{
-          fontWeight: 600,
-          color: "var(--text-secondary, #61dafb)",
-          marginBottom: 10,
-          fontSize: 16,
-        }}
-      >
-        🛠 Host Menu
-      </div>
-      <ul style={{ listStyle: "none", padding: 0, fontSize: 15, color: "var(--text-primary, #282c34)" }}>
-        <li style={{margin: "1rem 0", opacity: 0.7}}><em>...add host actions...</em></li>
-      </ul>
-    </div>
-  );
-}
+import NavBar from "./components/NavBar";
+import SideMenu from "./components/SideMenu";
 
 // Main Content Area to mount the current micro frontend
 function ModuleDisplay({ active }) {
@@ -114,7 +18,7 @@ function ModuleDisplay({ active }) {
       return <TemplatesApp />;
     default:
       return (
-        <div style={{padding: "2rem"}}>
+        <div style={{ padding: "2rem" }}>
           <h3>Unknown Module</h3>
         </div>
       );
@@ -149,42 +53,40 @@ function App() {
     setActiveModule(moduleKey);
   };
 
+  // Make room for fixed nav/side in layout
   return (
     <div
       className="App"
       style={{
         minHeight: "100vh",
         background: "var(--bg-primary, #fff)",
-        display: "flex",
-        flexDirection: "column"
+        transition: "background .2s",
       }}
     >
-      {/* Top Navigation Bar */}
-      <TopNavBar
+      {/* Fixed Top Navigation Bar */}
+      <NavBar
         current={activeModule}
         onSwitch={handleSwitchModule}
         theme={theme}
         toggleTheme={toggleTheme}
       />
-      {/* Shell Layout: Side Menu + Main Content */}
+      {/* Collapsible Side Menu */}
+      <SideMenu />
+      {/* Main Content (offset for nav & sidebar) */}
       <div
+        className="dashboard-main-content"
         style={{
-          display: "flex",
-          flex: 1,
-          minHeight: 0
+          marginLeft: 200,
+          marginTop: 60,
+          padding: 0,
+          minHeight: "calc(100vh - 60px)",
+          transition: "margin-left .25s cubic-bezier(.4,0,.2,1)",
+          position: "relative",
+          overflow: "auto",
+          background: "var(--bg-primary, #fff)"
         }}
       >
-        <SideMenu />
-        <main
-          style={{
-            flex: 1,
-            padding: 0,
-            overflow: "auto",
-            background: "var(--bg-primary, #fff)"
-          }}
-        >
-          <ModuleDisplay active={activeModule} />
-        </main>
+        <ModuleDisplay active={activeModule} />
       </div>
     </div>
   );
